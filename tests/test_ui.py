@@ -3,7 +3,7 @@ def test_sign_in(holistiplan):
     Test case to ensure that user can be authenticated.
     """
     # Authenticate user
-    holistiplan.sign_in()
+    holistiplan.login_logout.sign_in()
 
 
 def test_logout(holistiplan):
@@ -11,10 +11,10 @@ def test_logout(holistiplan):
     Test case to ensure that user can Log out.
     """
     # Authenticate user
-    holistiplan.sign_in()
+    holistiplan.login_logout.sign_in()
 
     # Logout User
-    holistiplan.sign_out()
+    holistiplan.login_logout.sign_out()
 
 
 # def test_reset_password(holistiplan):
