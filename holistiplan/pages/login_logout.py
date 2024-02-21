@@ -20,12 +20,16 @@ class LoginLogout:
         self.password = password
         # URL
         self.url_login = f'{self.base_url}/accounts/login/'
-        # locators
+        # locators signup
         self.btn_sign_in_nav = '[id="log-in-link"]'
         self.field_username = '[name="login"]'
         self.field_password = '[name="password"]'
         self.btn_sign_in = '[type="submit"]'
         self.link_forgot_password = '[href="/accounts/password/reset/"]'
+        # locators forgot password
+        self.field_email_forgot_password = '[name="email"]'
+        self.btn_submit_forgot_password = '[type="submit"]'
+        self.lbl_confirmation_forgot_password = 'body > div:nth-child(3) > div > div > p'
 
         # users locators
         self.alert_signed_in ='[class="alert alert-dismissible alert-success"]'
@@ -33,10 +37,12 @@ class LoginLogout:
         self.url_logout = f'{self.base_url}/accounts/logout/'
         self.bnt_sign_out = '[type="submit"]'
         self.alert_signed_out ='[class="alert alert-dismissible alert-success"]'
+
         # Expectations
         self.expectation_successful_alert_log_in = f"Successfully signed in as {self.username}."
         self.expectation_successful_alert_log_out = "You have signed out."
         self.expectation_password_reset_title = "Password Reset"
+        self.expectation_password_reset_success = "We have sent you an e-mail. Please contact us if you do not receive it within a few minutes."
 
 
     def sign_in(self):
@@ -65,4 +71,8 @@ class LoginLogout:
         self.driver.find_element(By.CSS_SELECTOR, self.link_forgot_password).click()
         actual = self.driver.title
         assert actual == self.expectation_password_reset_title
-        logger.info('----- User Logged out  -----')
+        self.driver.find_element(By.CSS_SELECTOR, self.field_email_forgot_password).send_keys(self.username)
+        self.driver.find_element(By.CSS_SELECTOR, self.btn_submit_forgot_password).click()
+        actual = self.driver.find_element(By.CSS_SELECTOR, self.lbl_confirmation_forgot_password).text
+        assert actual == self.expectation_password_reset_success
+        logger.info('----- password reset  -----')
