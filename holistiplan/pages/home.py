@@ -18,42 +18,54 @@ class Home:
         self.base_url = base_url
         self.username = username
         self.password = password
-        # home page
-        self.btn_sign_in = '[id="log-in-link"]'
 
+        # locators
+        self.add_15_points = '[class="link-dark"]'
+        self.lbl_points_remain = '#points-status > div:nth-child(2) > div.row.justify-content-around > div:nth-child(2) > div.card-body'
+        self.btn_redeem_points = 'body > div:nth-child(3) > div.row.mt-4 > div:nth-child(1) > div > div.card-body > div > div > a'
 
-        # locators login page
-        self.url_login = f'{self.base_url}/accounts/login/'
-        self.field_username = '[name="login"]'
-        self.field_password = '[name="password"]'
-        self.bnt_sign_in = '[type="submit"]'
-
-        # users locators
-        self.alert_signed_in ='[class="alert alert-dismissible alert-success"]'
-        self.expectation_successful_alert_log_in = f"Successfully signed in as {self.username}."
-        self.expectation_successful_alert_log_out = "You have signed out."
-        #logout
-        self.url_logout = f'{self.base_url}/accounts/logout/'
-        self.bnt_sign_out = '[type="submit"]'
-        self.alert_signed_out ='[class="alert alert-dismissible alert-success"]'
+        self.btn_clear_points = '#alerts > div > span > a'
+        self.btn_claim='[class="btn btn-success btn-lg"]'
+        self.alert = '[class="alert alert-dismissible alert-info"]'
+        self.btn_hide_bar = '[id="djHideToolBarButton"]'
+        # expectations
+        self.expected_text = 'You successfully claimed the following rewards: Tote Bag of Holding'
+        self.expected_points = "0"
+        self.expected_points_2 = "10.25"
+        self.expected_points_2 = "12.25"
 
 
 
-    def sign_in(self):
-        logger.info('----- Auth user -----')
-        self.driver.find_element()
-        self.driver.get(self.url_login)
-        self.driver.find_element(By.CSS_SELECTOR, self.field_username).send_keys(self.username)
-        self.driver.find_element(By.CSS_SELECTOR, self.field_password).send_keys(self.password)
-        self.driver.find_element(By.CSS_SELECTOR, self.bnt_sign_in).click()
-        actual = self.driver.find_element(By.CSS_SELECTOR, self.alert_signed_in).text
-        assert actual == self.expectation_successful_alert_log_in
-        logger.info('----- User authorized -----')
 
-    def sign_out(self):
-        logger.info('----- Log out  -----')
-        self.driver.get(self.url_logout)
-        self.driver.find_element(By.CSS_SELECTOR, self.bnt_sign_out).click()
-        actual = self.driver.find_element(By.CSS_SELECTOR, self.alert_signed_out).text
-        assert actual == self.expectation_successful_alert_log_out
-        logger.info('----- User Logged out  -----')
+
+    def redeem_points(self):
+        logger.info('----- try to redeem points -----')
+        self.driver.get(self.base_url)
+        self.driver.find_element(By.CSS_SELECTOR, self.btn_hide_bar).click()
+        self.driver.find_element(By.CSS_SELECTOR, self.btn_clear_points).click()
+        self.driver.find_element(By.CSS_SELECTOR, self.add_15_points).click()
+        self.driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
+        time.sleep(5)
+        self.driver.find_element(By.CSS_SELECTOR, self.btn_redeem_points).click()
+        from selenium.webdriver.common.keys import Keys
+        self.driver.find_element(By.CSS_SELECTOR, 'body').send_keys(Keys.CONTROL + Keys.HOME)
+        #element = self.driver.find_element(By.CSS_SELECTOR, '[class="navbar-toggler-icon"]')
+        #self.driver.execute_script("return arguments[0].scrollIntoView(true);", element)
+        time.sleep(5)
+        self.driver.find_element(By.CSS_SELECTOR, self.btn_claim).click()
+        alert = self.driver.find_element(By.CSS_SELECTOR, self.alert).text
+        assert alert == self.expected_text
+        logger.info('----- points redeemed -----')
+
+    def clear_points(self):
+        logger.info('----- try to clear points -----')
+        self.driver.get(self.base_url)
+        self.driver.find_element(By.CSS_SELECTOR, self.btn_hide_bar).click()
+        self.driver.find_element(By.CSS_SELECTOR, self.btn_clear_points).click()
+        self.driver.find_element(By.CSS_SELECTOR, self.add_15_points).click()
+        time.sleep(5)
+        self.driver.find_element(By.CSS_SELECTOR, self.btn_clear_points).click()
+        time.sleep(5)
+        points = self.driver.find_element(By.CSS_SELECTOR, self.lbl_points_remain).text
+        assert points == self.expected_points
+        logger.info('----- points redeemed -----')
