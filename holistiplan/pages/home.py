@@ -60,4 +60,4 @@ class Home:
         time.sleep(2)
         points = self.driver.find_element(By.CSS_SELECTOR, self.lbl_points_remain).text
         assert points == self.expected_points
-        logger.info('----- points clearede -----')
+        logger.info('----- points cleared -----')
