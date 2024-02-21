@@ -68,6 +68,7 @@ allure serve report
     - `pages/about.py`: placeholder 
   - `tests/`: Includes API test suites.
   - `.gitignore`: Specifies intentionally untracked files to be ignored by Git.
+  - `config.json`: config file for tests setup.
   - `conftest.py`: Configuration file for pytest, used for fixtures and plugins.
   - `pytest.ini`: Configuration file for pytest.
   - `README.md`: Documentation file providing information about the UI testing framework.
