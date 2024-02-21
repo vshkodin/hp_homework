@@ -4,6 +4,9 @@
 
 Bug report can be found [HERE](documents/Bug_report_02_20_24.pdf):
 
+## DEMO
+![DEMO](documents/2024-02-21.gif)
+
 ## Overview  
 
 The UI Python - Selenium Testing Framework crafted to test UI of https://github.com/ocrfin/qa_homework project. This documentation aims to provide comprehensive instructions on the installation, execution, and effective utilization of the framework.  
@@ -51,7 +54,7 @@ pytest --username someone@holistiplan.com --password bfx!wkp3zve3WUX*guq --local
 ```commandline
 allure serve allure-results 
 ```
-!!! add gif
+
 
  
 ## Folder Structure

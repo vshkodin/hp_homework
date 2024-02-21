@@ -65,7 +65,7 @@ class Home:
         self.driver.find_element(By.CSS_SELECTOR, self.add_15_points).click()
         time.sleep(5)
         self.driver.find_element(By.CSS_SELECTOR, self.btn_clear_points).click()
-        time.sleep(5)
+        time.sleep(2)
         points = self.driver.find_element(By.CSS_SELECTOR, self.lbl_points_remain).text
         assert points == self.expected_points
         logger.info('----- points redeemed -----')
