@@ -1,12 +1,9 @@
 import logging
 import time
 
-
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
 
 logger = logging.getLogger()
 
@@ -20,7 +17,6 @@ class Profile:
         self.password = password
         self.test_name = "Rob"
 
-
         # locators profile page
         self.url_profile = f'{self.base_url}/users/1/"'
         self.btn_profile = '[href="/users/1/"]'
@@ -29,10 +25,6 @@ class Profile:
         self.field_name = '[name="name"]'
         self.alet = '[class="alert alert-dismissible alert-success"]'
         self.expected_confirmation = 'Information successfully updated'
-
-
-
-
 
     def update_name_of_user(self):
         logger.info('----- try to update username -----')
@@ -45,4 +37,3 @@ class Profile:
         alert = self.driver.find_element(By.CSS_SELECTOR, self.alet).text
         assert alert == self.expected_confirmation
         logger.info('----- username is updated -----')
-

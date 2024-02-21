@@ -1,5 +1,6 @@
 import pytest
 
+
 def test_sign_in(holistiplan):
     """
     Test case to ensure that user can be authenticated.
@@ -56,12 +57,14 @@ def test_update_name_user(holistiplan):
     # Update name of user
     holistiplan.profile.update_name_of_user()
 
+
 def test_redeem_points(holistiplan):
     """
     Test case to ensure that user can Redeem points.
     """
     # Authenticate user
     holistiplan.home.redeem_points()
+
 
 def test_clear_points(holistiplan):
     """

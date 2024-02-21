@@ -1,12 +1,9 @@
 import logging
 import time
 
-
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
 
 logger = logging.getLogger()
 
@@ -25,7 +22,7 @@ class Home:
         self.btn_redeem_points = 'body > div:nth-child(3) > div.row.mt-4 > div:nth-child(1) > div > div.card-body > div > div > a'
 
         self.btn_clear_points = '#alerts > div > span > a'
-        self.btn_claim='[class="btn btn-success btn-lg"]'
+        self.btn_claim = '[class="btn btn-success btn-lg"]'
         self.alert = '[class="alert alert-dismissible alert-info"]'
         self.btn_hide_bar = '[id="djHideToolBarButton"]'
         # expectations
@@ -33,10 +30,6 @@ class Home:
         self.expected_points = "0"
         self.expected_points_2 = "10.25"
         self.expected_points_2 = "12.25"
-
-
-
-
 
     def redeem_points(self):
         logger.info('----- try to redeem points -----')
@@ -49,8 +42,8 @@ class Home:
         self.driver.find_element(By.CSS_SELECTOR, self.btn_redeem_points).click()
         from selenium.webdriver.common.keys import Keys
         self.driver.find_element(By.CSS_SELECTOR, 'body').send_keys(Keys.CONTROL + Keys.HOME)
-        #element = self.driver.find_element(By.CSS_SELECTOR, '[class="navbar-toggler-icon"]')
-        #self.driver.execute_script("return arguments[0].scrollIntoView(true);", element)
+        # element = self.driver.find_element(By.CSS_SELECTOR, '[class="navbar-toggler-icon"]')
+        # self.driver.execute_script("return arguments[0].scrollIntoView(true);", element)
         time.sleep(5)
         self.driver.find_element(By.CSS_SELECTOR, self.btn_claim).click()
         alert = self.driver.find_element(By.CSS_SELECTOR, self.alert).text

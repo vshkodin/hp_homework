@@ -1,12 +1,9 @@
 import logging
 import time
 
-
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
 
 logger = logging.getLogger()
 
@@ -33,11 +30,11 @@ class LoginLogout:
         self.lbl_confirmation_forgot_password = 'body > div:nth-child(3) > div > div > p'
 
         # users locators
-        self.alert_signed_in ='[class="alert alert-dismissible alert-success"]'
+        self.alert_signed_in = '[class="alert alert-dismissible alert-success"]'
         # logout page
         self.url_logout = f'{self.base_url}/accounts/logout/'
         self.bnt_sign_out = '[type="submit"]'
-        self.alert_signed_out ='[class="alert alert-dismissible alert-success"]'
+        self.alert_signed_out = '[class="alert alert-dismissible alert-success"]'
 
         # Expectations
         self.expectation_successful_alert_log_in = f"Successfully signed in as {self.username}."
@@ -45,7 +42,6 @@ class LoginLogout:
         self.expectation_password_reset_title = "Password Reset"
         self.expectation_signup_title = "Signup"
         self.expectation_password_reset_success = "We have sent you an e-mail. Please contact us if you do not receive it within a few minutes."
-
 
     def sign_in(self):
         logger.info('----- Auth user -----')
@@ -74,7 +70,6 @@ class LoginLogout:
         assert actual == self.expectation_signup_title
         logger.info('----- signup link validated  -----')
 
-
     def validate_forgot_password_page(self):
         logger.info('----- open forgot password page-----')
         self.driver.get(self.base_url)
@@ -87,4 +82,3 @@ class LoginLogout:
         actual = self.driver.find_element(By.CSS_SELECTOR, self.lbl_confirmation_forgot_password).text
         assert actual == self.expectation_password_reset_success
         logger.info('----- password reset validated -----')
-

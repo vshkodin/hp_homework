@@ -1,8 +1,6 @@
 import logging
 import time
 
-
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -10,7 +8,6 @@ from holistiplan.pages.login_logout import LoginLogout
 from holistiplan.pages.home import Home
 from holistiplan.pages.profile import Profile
 from holistiplan.pages.signup import Signup
-
 
 logger = logging.getLogger()
 

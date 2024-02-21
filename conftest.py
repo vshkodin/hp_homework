@@ -10,6 +10,7 @@ from holistiplan.pages.base import Base
 with open('config.json') as config_file:
     config = json.load(config_file)
 
+
 # Defineed command-line options for pytest
 def pytest_addoption(parser):
     parser.addoption("--local", action="store_true", help="Enable the flag")
@@ -28,7 +29,6 @@ def logger():
     # Add the file handler to the logger
     logger.addHandler(file_handler)
     return logger
-
 
 
 # Define a fixture that will set up and tear down the driver
