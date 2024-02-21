@@ -19,11 +19,21 @@ def test_logout(holistiplan):
 
 def test_reset_password(holistiplan):
     """
-    Test case to ensure that user can Log out.
+    Test case to ensure that user reset password.
     """
 
     # Validate forgot password page
     holistiplan.login_logout.validate_forgot_password_page()
+
+
+def test_validate_signup_link_on_signin_page(holistiplan):
+    """
+    Test case to ensure signup link is working on sign in page.
+    """
+
+    # Validate forgot password page
+    holistiplan.login_logout.validate_signup_link()
+
 
 
 # def test_sign_up(holistiplan):
