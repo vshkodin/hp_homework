@@ -64,10 +64,10 @@ allure serve allure-results
     - `Bug_report_02_20_24.pdf`: 02/20/24 Bug report
   - `holistiplan/`:
     - `pages/signup.py`: signup page Object (class).
-    - `pages/login.py`:
-    - `pages/home.py`:
-    - `pages/passwordReset.py`:
-    - `pages/profile.py`:
+    - `pages/base.py`: base page Object (class).
+    - `pages/login_logout.py`: login_logout page Object (class).
+    - `pages/home.py`: home page Object (class).
+    - `pages/profile.py`: profile page Object (class).
     - `pages/about.py`: placeholder 
   - `tests/`: Includes API test suites.
   - `.gitignore`: Specifies intentionally untracked files to be ignored by Git.
