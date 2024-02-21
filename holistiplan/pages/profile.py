@@ -10,11 +10,9 @@ logger = logging.getLogger()
 
 class Profile:
 
-    def __init__(self, driver, base_url, username, password):
+    def __init__(self, driver, base_url):
         self.driver = driver
         self.base_url = base_url
-        self.username = username
-        self.password = password
         self.test_name = "Rob"
 
         # locators profile page
