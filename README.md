@@ -44,8 +44,7 @@ scoop install allure
 # service has to run on http://localhost:3000/
 curl -I http://localhost:3000/ 2>/dev/null | head -n 1 | cut -d$' ' -f2
 # has to return 200, if so we are ok to run 
-pytest --username *** --password *** --local
-pytest --username someone@holistiplan.com --password bfx!wkp3zve3WUX*guq --local
+pytest --local
 
 ```
 !!! add gif
