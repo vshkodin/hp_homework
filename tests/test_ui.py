@@ -46,15 +46,15 @@ def test_validate_password_check(holistiplan):
     holistiplan.signup.validate_password_check()
 
 
-# def test_sign_up(holistiplan):
-#     """
-#     Test case to ensure that user can Log out.
-#     """
-#     # Authenticate user
-#     holistiplan.login()
-#
-#     # Validate authentication
-#     holistiplan.check_user_authentication()
+def test_sign_up(holistiplan):
+    """
+    Test case to ensure that user can update name.
+    """
+    # Authenticate user
+    holistiplan.login_logout.sign_in()
+
+    # Validate authentication
+    holistiplan.profile.update_name_of_user()
 #
 #
 # def test_profile_change_name(holistiplan):

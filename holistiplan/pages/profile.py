@@ -18,40 +18,29 @@ class Profile:
         self.base_url = base_url
         self.username = username
         self.password = password
+        self.test_name = "Rob"
 
 
-        # locators login page
-        self.url_profile = f'{self.base_url}href="/users/1/"'
-        self.field_username = '[name="login"]'
-        self.field_password = '[name="password"]'
-        self.bnt_sign_in = '[type="submit"]'
-
-        # users locators
-        self.alert_signed_in ='[class="alert alert-dismissible alert-success"]'
-        self.expectation_successful_alert_log_in = f"Successfully signed in as {self.username}."
-        self.expectation_successful_alert_log_out = "You have signed out."
-        #logout
-        self.url_logout = f'{self.base_url}/accounts/logout/'
-        self.bnt_sign_out = '[type="submit"]'
-        self.alert_signed_out ='[class="alert alert-dismissible alert-success"]'
+        # locators profile page
+        self.url_profile = f'{self.base_url}/users/1/"'
+        self.btn_profile = '[href="/users/1/"]'
+        self.btn_update = '[href="/users/~update/"]'
+        self.btn_submit = '[type="submit"]'
+        self.field_name = '[name="name"]'
+        self.alet = '[class="alert alert-dismissible alert-success"]'
+        self.expected_confirmation = 'Information successfully updated'
 
 
 
-    def sign_in(self):
-        logger.info('----- Auth user -----')
-        self.driver.find_element()
-        self.driver.get(self.url_login)
-        self.driver.find_element(By.CSS_SELECTOR, self.field_username).send_keys(self.username)
-        self.driver.find_element(By.CSS_SELECTOR, self.field_password).send_keys(self.password)
-        self.driver.find_element(By.CSS_SELECTOR, self.bnt_sign_in).click()
-        actual = self.driver.find_element(By.CSS_SELECTOR, self.alert_signed_in).text
-        assert actual == self.expectation_successful_alert_log_in
-        logger.info('----- User authorized -----')
 
-    def sign_out(self):
-        logger.info('----- Log out  -----')
-        self.driver.get(self.url_logout)
-        self.driver.find_element(By.CSS_SELECTOR, self.bnt_sign_out).click()
-        actual = self.driver.find_element(By.CSS_SELECTOR, self.alert_signed_out).text
-        assert actual == self.expectation_successful_alert_log_out
-        logger.info('----- User Logged out  -----')
+
+    def update_name_of_user(self):
+        logger.info('----- try to update username -----')
+        self.driver.find_element(By.CSS_SELECTOR, self.btn_profile).click()
+        self.driver.find_element(By.CSS_SELECTOR, self.btn_update).click()
+        self.driver.find_element(By.CSS_SELECTOR, self.field_name).send_keys(self.test_name)
+        self.driver.find_element(By.CSS_SELECTOR, self.btn_submit).click()
+        alert = self.driver.find_element(By.CSS_SELECTOR, self.alet).text
+        assert alert == self.expected_confirmation
+        logger.info('----- username is updated -----')
+
