@@ -32,7 +32,7 @@ def logger():
 
 
 # Define a fixture that will set up and tear down the driver
-@pytest.fixture(scope="session")
+@pytest.fixture
 def driver(request):
     service = ChromeService()
     options = webdriver.ChromeOptions()
