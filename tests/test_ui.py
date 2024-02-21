@@ -32,7 +32,7 @@ def test_validate_signup_link_on_signin_page(holistiplan):
     """
 
     # Validate forgot password page
-    holistiplan.login_logout.validate_signup_link()
+    holistiplan.signup.sign_up()
 
 
 
