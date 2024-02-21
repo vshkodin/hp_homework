@@ -1,3 +1,5 @@
+import pytest
+
 def test_sign_in(holistiplan):
     """
     Test case to ensure that user can be authenticated.
@@ -28,12 +30,20 @@ def test_reset_password(holistiplan):
 
 def test_validate_signup_link_on_signin_page(holistiplan):
     """
-    Test case to ensure signup link is working on sign in page.
+    Test case to ensure signup is working on sign in page.
     """
 
     # Validate forgot password page
     holistiplan.signup.sign_up()
 
+
+def test_validate_password_check(holistiplan):
+    """
+    Test case to ensure password checks are working.
+    """
+
+    # Validate forgot password page
+    holistiplan.signup.validate_password_check()
 
 
 # def test_sign_up(holistiplan):

@@ -49,7 +49,7 @@ pytest --username someone@holistiplan.com --password bfx!wkp3zve3WUX*guq --local
 
 ### See Test Report
 ```commandline
-allure serve report
+allure serve allure-results 
 ```
 !!! add gif
 

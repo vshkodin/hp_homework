@@ -80,8 +80,8 @@ class LoginLogout:
         self.driver.get(self.base_url)
         self.driver.find_element(By.CSS_SELECTOR, self.btn_sign_in_nav).click()
         self.driver.find_element(By.CSS_SELECTOR, self.link_forgot_password).click()
-        actual = self.driver.title
-        assert actual == self.expectation_password_reset_title
+        title = self.driver.title
+        assert title == self.expectation_password_reset_title
         self.driver.find_element(By.CSS_SELECTOR, self.field_email_forgot_password).send_keys(self.username)
         self.driver.find_element(By.CSS_SELECTOR, self.btn_submit_forgot_password).click()
         actual = self.driver.find_element(By.CSS_SELECTOR, self.lbl_confirmation_forgot_password).text

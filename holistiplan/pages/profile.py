@@ -18,12 +18,10 @@ class Profile:
         self.base_url = base_url
         self.username = username
         self.password = password
-        # home page
-        self.btn_sign_in = '[id="log-in-link"]'
 
 
         # locators login page
-        self.url_login = f'{self.base_url}/accounts/login/'
+        self.url_profile = f'{self.base_url}href="/users/1/"'
         self.field_username = '[name="login"]'
         self.field_password = '[name="password"]'
         self.bnt_sign_in = '[type="submit"]'
