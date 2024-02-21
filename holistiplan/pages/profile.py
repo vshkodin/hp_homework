@@ -38,6 +38,8 @@ class Profile:
         logger.info('----- try to update username -----')
         self.driver.find_element(By.CSS_SELECTOR, self.btn_profile).click()
         self.driver.find_element(By.CSS_SELECTOR, self.btn_update).click()
+        self.driver.find_element(By.CSS_SELECTOR, self.field_name).click()
+        self.driver.find_element(By.CSS_SELECTOR, self.field_name).clear()
         self.driver.find_element(By.CSS_SELECTOR, self.field_name).send_keys(self.test_name)
         self.driver.find_element(By.CSS_SELECTOR, self.btn_submit).click()
         alert = self.driver.find_element(By.CSS_SELECTOR, self.alet).text
