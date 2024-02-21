@@ -25,7 +25,7 @@ class LoginLogout:
         self.field_username = '[name="login"]'
         self.field_password = '[name="password"]'
         self.btn_sign_in = '[type="submit"]'
-        self.link_forgot_password = '[id="id_password_helptext"]'
+        self.link_forgot_password = '[href="/accounts/password/reset/"]'
 
         # users locators
         self.alert_signed_in ='[class="alert alert-dismissible alert-success"]'
@@ -36,13 +36,13 @@ class LoginLogout:
         # Expectations
         self.expectation_successful_alert_log_in = f"Successfully signed in as {self.username}."
         self.expectation_successful_alert_log_out = "You have signed out."
+        self.expectation_password_reset_title = "Password Reset"
 
 
     def sign_in(self):
         logger.info('----- Auth user -----')
         self.driver.get(self.base_url)
         self.driver.find_element(By.CSS_SELECTOR, self.btn_sign_in_nav).click()
-        self.driver.get(self.url_login)
         self.driver.find_element(By.CSS_SELECTOR, self.field_username).send_keys(self.username)
         self.driver.find_element(By.CSS_SELECTOR, self.field_password).send_keys(self.password)
         self.driver.find_element(By.CSS_SELECTOR, self.btn_sign_in).click()
@@ -59,9 +59,10 @@ class LoginLogout:
         logger.info('----- User Logged out  -----')
 
     def validate_forgot_password_page(self):
-        logger.info('----- Log out  -----')
-        self.driver.get(self.url_logout)
-        self.driver.find_element(By.CSS_SELECTOR, self.bnt_sign_out).click()
-        actual = self.driver.find_element(By.CSS_SELECTOR, self.alert_signed_out).text
-        assert actual == self.expectation_successful_alert_log_out
+        logger.info('----- open forgot password page-----')
+        self.driver.get(self.base_url)
+        self.driver.find_element(By.CSS_SELECTOR, self.btn_sign_in_nav).click()
+        self.driver.find_element(By.CSS_SELECTOR, self.link_forgot_password).click()
+        actual = self.driver.title
+        assert actual == self.expectation_password_reset_title
         logger.info('----- User Logged out  -----')

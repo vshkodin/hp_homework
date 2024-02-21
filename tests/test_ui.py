@@ -17,20 +17,15 @@ def test_logout(holistiplan):
     holistiplan.login_logout.sign_out()
 
 
-# def test_reset_password(holistiplan):
-#     """
-#     Test case to ensure that user can Log out.
-#     """
-#     # Authenticate user
-#     holistiplan.login()
-#
-#     # Validate authentication
-#     holistiplan.check_user_authentication()
-#
-#     # Logout User
-#     holistiplan.logout()
-#
-#
+def test_reset_password(holistiplan):
+    """
+    Test case to ensure that user can Log out.
+    """
+
+    # Validate forgot password page
+    holistiplan.login_logout.validate_forgot_password_page()
+
+
 # def test_sign_up(holistiplan):
 #     """
 #     Test case to ensure that user can Log out.
