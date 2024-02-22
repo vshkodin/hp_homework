@@ -7,16 +7,17 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 
 from holistiplan.pages.base import Base
 
+# Load test configuration from a JSON file
 with open('config.json') as config_file:
     config = json.load(config_file)
 
 
-# Defineed command-line options for pytest
+# Define command-line options for pytest to allow running tests in different environments
 def pytest_addoption(parser):
     parser.addoption("--local", action="store_true", help="Enable the flag")
 
 
-# Define a fixture to configure logging
+# Configure a logging fixture that persists across the test session
 @pytest.fixture(scope="session")
 def logger():
     # Define the log file path
@@ -31,7 +32,7 @@ def logger():
     return logger
 
 
-# Define a fixture that will set up and tear down the driver
+# Setup and teardown of the WebDriver for each test
 @pytest.fixture
 def driver(request):
     service = ChromeService()
@@ -63,7 +64,7 @@ def pytest_runtest_makereport(item, call):
         logger.info(f"Test passed: {item.nodeid}")
 
 
-# Define a fixture base page object
+# Provide a Base page object fixture for use in tests
 @pytest.fixture
 def holistiplan(driver):
     holistiplan_instance = Base(driver, config['local_base_url'], config['local_username'], config['local_password'])
