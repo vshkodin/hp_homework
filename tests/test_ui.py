@@ -62,7 +62,6 @@ def test_redeem_points(holistiplan):
     """
     Test case to ensure that user can Redeem points.
     """
-    # Authenticate user
     holistiplan.home.redeem_points()
 
 
@@ -70,5 +69,4 @@ def test_clear_points(holistiplan):
     """
     Test case to ensure that user clear points.
     """
-    # Authenticate user
     holistiplan.home.clear_points()
